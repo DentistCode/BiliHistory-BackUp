@@ -64,7 +64,12 @@ def req_get(headers, url):
     resp = requests.get(url, headers=headers)
     # 检查响应体是否为空
     if resp.text.strip():  # 使用strip()函数移除可能的空白字符
-        return json.loads(resp.text)
+        try:
+            return json.loads(resp.text)
+        except json.JSONDecodeError as e:
+            print("JSONDecodeError:", e)
+            print("Response text:", resp.text)
+            return None
     else:
         print("Empty response from url:", url)
         return None  # 返回None表示响应体为空

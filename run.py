@@ -78,7 +78,7 @@ def get_all_bili_history(cookie_file):
 
         # 检查结果是否有效
         if result is None or 'data' not in result or result['data'] is None:
-            if result.get('code') == 0:
+            if result and result['code'] == 0:
                 print("正常结束，没记录了哦(=￣ω￣=)\n\n")
             else:
                 print("不正常结束，检查下有啥问题(´･_･`)")
@@ -111,9 +111,9 @@ if __name__ == '__main__':
 
 
     # 如果需要合并历史记录，取消下面三行的注释
-    old_history = load(OLD_HISTORY_FILE)  # 确保这里加载的是列表
-    history = merge_histories(old_history, history)
-    history, first_time, last_time, count = process_history(history)
+    # old_history = load(OLD_HISTORY_FILE)  # 确保这里加载的是列表
+    # history = merge_histories(old_history, history)
+    # history, first_time, last_time, count = process_history(history)
 
 
     # 将时间戳转换为日期时间字符串
